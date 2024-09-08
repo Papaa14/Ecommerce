@@ -4,6 +4,11 @@ import axios from "./axios";
 import { Link, useNavigate  } from "react-router-dom";
 import { AppContext } from "./AppContext";
 import Notification from "./../components/Notification";
+import TextField from "@mui/material/TextField";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 function SignupForm() {
   const [formData, setFormData] = useState({
@@ -77,6 +82,13 @@ function SignupForm() {
   
     return errors;
 }
+
+const [passwordVisible, setPasswordVisible] = useState(false);
+
+const handleClickShowPassword = () => {
+  setPasswordVisible(!passwordVisible);
+};
+  
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -190,26 +202,56 @@ function SignupForm() {
           <div>
             <div>
               <label htmlFor="password">Password</label>
-              <input
+              <TextField              
                 id="password"
-                type="password"
+                type={passwordVisible ? "text" : "password"}
                 placeholder="Password"
+                onClick={handleClickShowPassword}                
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
                 required
+                InputProps={{
+                  endAdornment:(
+                    <InputAdornment position="end">
+                      <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                       >
+                        {passwordVisible ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  )
+                }}
+                variant="outlined"
+                fullwidth
               />
             </div>
             <div>
               <label htmlFor="password2">Repeat Password</label>
-              <input
+              <TextField
                 id="password2"
-                type="password"
+                type={passwordVisible ? "text" : "password"}
                 placeholder="Repeat Password"
                 name="password2"
                 value={formData.password2}
                 onChange={handleChange}
+                onClick={handleClickShowPassword}
                 required
+                InputProps={{
+                  endAdornment:(
+                    <InputAdornment position="end">
+                      <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                       >
+                        {passwordVisible ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  )
+                }}
+                variant="outlined"
+                fullwidth
               />
             </div>
           </div>

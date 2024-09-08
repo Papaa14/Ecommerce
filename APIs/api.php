@@ -1,5 +1,6 @@
 <?php
 require_once 'database.php';
+require_once 'cors.php';
 
 $sql = "SELECT * FROM product WHERE 1=1";
 
@@ -70,4 +71,3 @@ $conn->close();
 
 header("Content-Type: application/json");
 echo json_encode($products);
-?>

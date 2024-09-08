@@ -4,6 +4,7 @@ require_once 'vendor/src/ExpiredException.php';
 require_once 'vendor/src/SignatureInvalidException.php';
 require_once 'vendor/src/JWT.php';
 
+
 use \Firebase\JWT\JWT;
 use \Firebase\JWT\KEY;
 $secretKey = "altini";
@@ -32,4 +33,4 @@ function verifyJwtToken($jwtToken) {
 }
 
 
-?>
+

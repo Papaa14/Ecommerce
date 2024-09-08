@@ -1,6 +1,7 @@
 <?php
 require_once 'database.php';
 require_once 'jwt.php'; 
+require_once 'cors.php';
 
 $response = array();
 $response['message'] = "";
@@ -53,5 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->close();
 }
 
+header('Content-Type: application/json');
 echo json_encode($response);
-?>
+exit(); 

@@ -28,7 +28,7 @@ function ProductsSection({ sectionTitle, sectionPhrase, filter, id }) {
     fetchData();
   }, [filter]);
 
-  const productsToShow = products.map((product) => (
+  const productsToShow =  Array.isArray(products) ? products.map((product) => (
     <ProductCard
       key={product.idproduct}
       productName={product.name}
@@ -39,7 +39,7 @@ function ProductsSection({ sectionTitle, sectionPhrase, filter, id }) {
       oldPrice={product.old_price}
       sale={true}
     />
-  ));
+  )):[];
 
   return (
     <section className="products-section products-featured full-block" id={id}>

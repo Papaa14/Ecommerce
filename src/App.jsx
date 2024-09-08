@@ -1,7 +1,8 @@
 import './styles/App.css';
 import Navbar from './components/Navbar';
-import {Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import { AppProvider } from './components/AppContext';
 import Home from './pages/Home';
 import Clothes from './pages/Clothes';
 import Accessories from './pages/Accessories';
@@ -14,6 +15,7 @@ import ProductPage from './pages/ProductPage';
 import Checkout from './pages/Checkout';
 
 
+
 function App() {
   const location = useLocation();
 
@@ -22,7 +24,7 @@ function App() {
   }, [location]);
 
   return (
-    <>
+    <AppProvider>
       <Navbar />
       <Routes>
         <Route exact path="/" element={<Home />} />
@@ -36,8 +38,8 @@ function App() {
         <Route path="/product/:productId" element={<ProductPage />} />
       </Routes>
       <Footer />
-    </>
-  )
+    </AppProvider>
+  );
 }
 
 export default App

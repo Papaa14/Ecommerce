@@ -1,5 +1,6 @@
 <?php
 require_once 'database.php';
+require_once 'cors.php';
 
 $response = array();
 $response['message'] = "";
@@ -13,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
     $address = $_POST['address'];
     $phone = $_POST['phone'];
+    $type='user';
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
       $nameRegex = '/^[a-zA-Z\s]+$/';
       $usernameRegex = '/^[a-zA-Z][a-zA-Z0-9]*$/';
@@ -87,7 +89,7 @@ if (empty($errors)) {
   $checkResult->close();
 }
       if (empty($errors)) {
-    $stmt = $conn->prepare("INSERT INTO `user` (`name`, `username`, `email`, `password`, `address`, `phonenumber`) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO `user` (`name`, `username`, `email`, `password`, `address`, `phonenumber`,'type') VALUES (?, ?, ?, ?, ?, ?,?)");
     if (!$stmt) {
         die("Prepare failed: " . $conn->error);
     }

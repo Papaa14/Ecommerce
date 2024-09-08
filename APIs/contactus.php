@@ -1,5 +1,6 @@
 <?php
 require_once 'database.php';
+require_once 'cors.php';
 $response = array();
 $response['message'] = "Sorry, something went wrong!";
 
