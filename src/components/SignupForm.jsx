@@ -222,9 +222,7 @@ const handleClickShowPassword = () => {
                       </IconButton>
                     </InputAdornment>
                   )
-                }}
-                variant="outlined"
-                fullwidth
+                }}                
               />
             </div>
             <div>
@@ -249,9 +247,7 @@ const handleClickShowPassword = () => {
                       </IconButton>
                     </InputAdornment>
                   )
-                }}
-                variant="outlined"
-                fullwidth
+                }}                
               />
             </div>
           </div>

@@ -31,7 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $tokenPayload = array(
                     'username' => $user['username'],
                     'name' => $user['name'],
-                    'iduser' => $user['iduser']
+                    'iduser' => $user['iduser'],
+                    'type' => $user['type'],
                 );
                 $jwtToken = generateJwtToken($tokenPayload);
 
@@ -41,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $response['user'] = array(
                     'username' => $user['username'],
                     'name' => $user['name'],
+                    'type' => $user['type'],
                 );
             } else {
                 $response['message'] = "Incorrect password!";
