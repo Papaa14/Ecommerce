@@ -5,7 +5,6 @@ import axios from "./axios";
 import { AppContext } from "./AppContext";
 import Notification from "./../components/Notification";
 
-
 function LoginForm() {
   const [formData, setFormData] = useState({
     login_username_email: "",
@@ -18,17 +17,16 @@ function LoginForm() {
   const navigate = useNavigate();
 
   // Navigate to Home after user is logged in
-useEffect(() => {
-  if (isUserLogged) {
-    console.log("User is logged in,navigating to home");
-    navigate("/", { replace: true }, 
-    () => {
-      if (window.location.pathname !== "/") {
-        console.error("Navigation to home failed");
-      }
-    });
-  }
-}, [isUserLogged, navigate]);
+  useEffect(() => {
+    if (isUserLogged) {
+      console.log("User is logged in, navigating to home");
+      navigate("/", { replace: true }, () => {
+        if (window.location.pathname !== "/") {
+          console.error("Navigation to home failed");
+        }
+      });
+    }
+  }, [isUserLogged, navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -53,14 +51,21 @@ useEffect(() => {
         try {
           const jsonResponse = response.data;
           const loggedIn = jsonResponse.loggedin;
-          setIsUserLogged(loggedIn);         
+          setIsUserLogged(loggedIn);
           setNotificationText(jsonResponse.message);
           setShowNotification(true);
 
           if (loggedIn) {
             handleLoginToken(jsonResponse.token);
             localStorage.setItem("user", JSON.stringify(jsonResponse.user));
-            navigate( "/", { replace: true });
+
+            // Check user type and redirect to different pages
+            const userType = jsonResponse.user.type;
+            if (userType === "admin") {
+              navigate("/admin", { replace: true });
+            } else {
+              navigate("/", { replace: true });
+            }
           }
         } catch (error) {
           console.error("Error parsing JSON:", error);
@@ -73,12 +78,6 @@ useEffect(() => {
         setNotificationText("Login failed. Please try again.");
         setShowNotification(true);
       });
-  };
-
-  const closeNotification = () => {
-    setShowNotification(false);
-    setNotificationText("");
-    navigate( "/", { replace: true });
   };
 
   return (
@@ -126,5 +125,11 @@ useEffect(() => {
     </section>
   );
 }
+
+const closeNotification = () => {
+  setShowNotification(false);
+  setNotificationText("");
+  navigate( "/", { replace: true });
+};
 
 export default LoginForm;

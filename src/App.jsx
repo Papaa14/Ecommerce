@@ -13,7 +13,7 @@ import Cart from './pages/Cart';
 import Footer from './components/Footer';
 import ProductPage from './pages/ProductPage';
 import Checkout from './pages/Checkout';
-
+import Admin from  './pages/Admin/App';
 
 
 function App() {
@@ -36,6 +36,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/product/:productId" element={<ProductPage />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
       <Footer />
     </AppProvider>
