@@ -1,7 +1,15 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #1d2634;
+    background-image: url('/src/assets/bg2.jpg');   
+    background: url("src/assets/bg2.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size:100vw 100vh;
+    height: 100vh;
+    width: 100vw;
+    max-width: 100%;
     color: #9e9ea4;
     font-family: 'Montserrat', sans-serif;
   }
@@ -53,66 +61,7 @@ body {
   }
   /* End Header  */
   
-  /* Sidebar  */
-  #sidebar {
-    grid-area: sidebar;
-    height: 100%;
-    background-color: #263043;
-    overflow-y: auto;
-    transition: all 0.5s;
-    -webkit-transition: all 0.5s;
-  }
   
-  .sidebar-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px 0px 30px;
-    margin-bottom: 30px;
-  }
-  
-  .sidebar-title > span {
-    display: none;
-  }
-  
-  .sidebar-brand {
-    margin-top: 15px;
-    font-size: 20px;
-    font-weight: 700;
-  }
-  
-  .sidebar-list {
-    padding: 0;
-    list-style-type: none;
-  }
-  
-  .sidebar-list-item {
-    padding: 20px 20px 20px 20px;
-    font-size: 18px;
-  }
-  
-  .sidebar-list-item:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    cursor: pointer;
-  }
-  
-  .sidebar-list-item > a {
-    text-decoration: none;
-    color: #9e9ea4;
-  }
-  
-  .sidebar-responsive {
-    display: inline !important;
-    position: absolute;
-    /*
-      we want the z-index of the sidebar higher so that
-      the charts are not showing over the sidebar 
-      on small screens
-    */
-    z-index: 12 !important;
-  }
-  
-  /* End Sidebar  */
   
   
   /* Main  */  
@@ -191,9 +140,7 @@ body {
         'main';
     }
   
-    #sidebar {
-      display: none;
-    }
+  
   
     .menu-icon {
       display: inline;

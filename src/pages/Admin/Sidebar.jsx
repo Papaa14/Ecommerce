@@ -1,58 +1,90 @@
-import React from 'react'
-import 
-{BsCart3, BsGrid1X2Fill, BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, 
-  BsListCheck, BsMenuButtonWideFill, BsFillGearFill}
- from 'react-icons/bs'
+import React, { useState, useRef, useEffect } from 'react';
+import {
+  BsCart3, BsGrid1X2Fill, BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill
+} from 'react-icons/bs';
+import icon from '../../assets/icon.png';
+import './sidebar.css';
+import { NavLink, Link } from 'react-router-dom';
+import { MdClose } from 'react-icons/md';
+import { FiMenu } from 'react-icons/fi';
 
-function Sidebar({openSidebarToggle, OpenSidebar}) {
+
+
+const Sidebar = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const ref = useRef();
+  useEffect(() => {
+    const handler = (event) => {
+      if (
+        sidebarOpen &&
+        ref.current &&
+        !ref.current.contains(event.target)
+      ) {
+        setSidebarOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener('mousedown', handler);
+    };
+  }, [sidebarOpen]);
+
+
+
   return (
-    <aside id="sidebar" className={openSidebarToggle ? "sidebar-responsive": ""}>
-        <div className='sidebar-title'>
-            <div className='sidebar-brand'>
-                <BsCart3  className='icon_header'/> SHOP
-            </div>
-            <span className='icon close_icon' onClick={OpenSidebar}>X</span>
-        </div>
+    <aside id="sidebar" >
+      <button
+        className="toggle"
+        onClick={() => setSidebarOpen((prev) => !prev)}
+      >
+        {sidebarOpen ? (
+          <MdClose style={{ width: '32px', height: '32px' }} />
+        ) : (
+          <FiMenu
+            style={{
+              width: '32px',
+              height: '32px',
+            }}
+          />
+        )}
+      </button>
 
-        <ul className='sidebar-list'>
-            <li className='sidebar-list-item'>
-                <a href="">
-                    <BsGrid1X2Fill className='icon'/> Dashboard
-                </a>
-            </li>
-            <li className='sidebar-list-item'>
-                <a href="">
-                    <BsFillArchiveFill className='icon'/> Products
-                </a>
-            </li>
-            <li className='sidebar-list-item'>
-                <a href="">
-                    <BsFillGrid3X3GapFill className='icon'/> Categories
-                </a>
-            </li>
-            <li className='sidebar-list-item'>
-                <a href="">
-                    <BsPeopleFill className='icon'/> Customers
-                </a>
-            </li>
-            <li className='sidebar-list-item'>
-                <a href="">
-                    <BsListCheck className='icon'/> Inventory
-                </a>
-            </li>
-            <li className='sidebar-list-item'>
-                <a href="">
-                    <BsMenuButtonWideFill className='icon'/> Reports
-                </a>
-            </li>
-            <li className='sidebar-list-item'>
-                <a href="">
-                    <BsFillGearFill className='icon'/> Setting
-                </a>
-            </li>
-        </ul>
+
+      <ul ref={ref} className={`menu-nav${sidebarOpen ? ' show-menu' : ''}`}>
+       
+
+        <li className='sidebar-list-item'>
+          <NavLink
+            to={Link.path}
+            onClick={() => setSidebarOpen(false)}
+          >
+            {Link.text}
+          </NavLink>
+
+          <NavLink to="/admin/dashboard">
+            <BsGrid1X2Fill className='icon' /> Dashboard
+          </NavLink>
+        </li>
+        <li className='sidebar-list-item'>
+          <NavLink to="/orders">
+            <BsFillArchiveFill className='icon' /> Orders
+          </NavLink>
+        </li>
+        <li className='sidebar-list-item'>
+          <NavLink to="/products">
+            <BsFillGrid3X3GapFill className='icon' /> Manage Products
+          </NavLink>
+        </li>
+        <li className='sidebar-list-item'>
+          <NavLink to="/users">
+            <BsPeopleFill className='icon' /> Customers
+          </NavLink>
+        </li>
+      </ul>
     </aside>
-  )
+  );
 }
 
-export default Sidebar
+export default Sidebar;

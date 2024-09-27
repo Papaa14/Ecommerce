@@ -33,12 +33,6 @@ const AppProvider = ({ children }) => {
     }
   }, [savedLoggedIn, token]);
 
-  
-  
-  
-
-
-
   return (
     <AppContext.Provider
       value={{

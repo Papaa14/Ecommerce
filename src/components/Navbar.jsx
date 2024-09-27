@@ -1,8 +1,9 @@
-import React, { useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { NavLink, useNavigate } from 'react-router-dom';
 import "../styles/base.css"
 import "../styles/Navbar.css";
 import { AppContext } from "./AppContext";
+import { FiLogOut } from "react-icons/fi";
 
 function Navbar() {
   const { isUserLogged, handleLogout } = useContext(AppContext);
@@ -19,21 +20,12 @@ function Navbar() {
     if (user.type === 'admin') {
       navbarItems = (
         <>
-          <li>
-            <NavLink to="/admin/dashboard">Admin Dashboard</NavLink>
+         <li>
+            <span className="navlinkName">Hello {user.username || "Guest"}, Welcome to Admin Dashboard</span>
           </li>
           <li>
-            <NavLink to="/admin/users">Manage Users</NavLink>
-          </li>
-          <li>
-            <NavLink to="/admin/products">Manage Products</NavLink>
-          </li>
-          <li>
-            <NavLink to="/" onClick={logOut} className="custom-active-class">Log Out</NavLink>
-          </li>
-          <li>
-            <span className="navlinkName">Hello {user.username || "Guest"}</span>
-          </li>
+            <NavLink to="/" onClick={logOut} className="custom-active-class"><FiLogOut/>Log Out</NavLink>
+          </li>          
         </>
       );
     } else {
@@ -97,10 +89,7 @@ function Navbar() {
     <header className="full-block">
       <div className="header-navigation-container" id="scroll-container">
         <div className="container">
-          <div className="navigation">
-            <div className="navigation-left-side">
-              <NavLink to="/"><img src="./../src/assets/logo.svg" width="200px" alt="" /></NavLink>
-            </div>
+          <div className="navigation">            
             <div className="navigation-right-side">
               <nav>
                 <ul>

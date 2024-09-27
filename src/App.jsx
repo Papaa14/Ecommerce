@@ -14,6 +14,13 @@ import Footer from './components/Footer';
 import ProductPage from './pages/ProductPage';
 import Checkout from './pages/Checkout';
 import Admin from  './pages/Admin/App';
+import Users from './pages/Admin/Users';
+
+
+//import Orders from './pages/Admin/Orders';
+//import Products from './pages/Admin/Products';
+
+
 
 
 function App() {
@@ -36,9 +43,13 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/product/:productId" element={<ProductPage />} />
-        <Route path="/admin" element={<Admin />} />
-      </Routes>
-      <Footer />
+        <Route path="/admin" element={<Admin />}/>
+        <Route path="/users" element={<Users />}/>
+
+        </Routes>
+         
+    
+      {location.pathname !== '/admin' && <Footer />}
     </AppProvider>
   );
 }

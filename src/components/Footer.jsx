@@ -84,7 +84,7 @@ function Footer() {
             </ul>
           </div>
           <div className="footer-section-right-side">
-            <li><NavLink to="/"><img src="./../src/assets/logo-white.svg" width="200px" alt="" /></NavLink></li>
+            <li><NavLink to="/"><img src="./../src/assets/icon.png" width="200px" alt="" /></NavLink></li>
           </div>
           <div className="footer-section-copyright">
             <p>&copy; 2024 . All rights reserved.</p>

@@ -1,47 +1,39 @@
 <?php
-require_once 'database.php';
-require_once 'jwt.php';
 require_once 'cors.php';
+require_once 'database.php';
 
-$response = array();
-$response['message'] = "";
-$response['user'] = null;
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $token = $_POST['token'];
+// Create connection using mysqli
+$conn = new mysqli($host, $username, $password, $dbname);
 
-    $decodedToken = verifyJwtToken($token);
-
-    if ($decodedToken !== null && isset($decodedToken->iduser)) {
-        $iduser = $decodedToken->iduser;
-
-        $stmt = $conn->prepare("SELECT name, email, phoneNumber, address FROM `user` WHERE `iduser` = ?");
-        if (!$stmt) {
-            die("Prepare failed: " . $conn->error);
-        }
-
-        $stmt->bind_param("i", $iduser);
-
-        if ($stmt->execute()) {
-            $result = $stmt->get_result();
-
-            if ($result->num_rows === 1) {
-                $user = $result->fetch_assoc();
-                $response['message'] = "User found";
-                $response['user'] = $user;
-            } else {
-                $response['message'] = "User not found!";
-            }
-        } else {
-            $response['message'] = "Error executing query: " . $stmt->error;
-        }
-        $stmt->close();
-    } else {
-        $response['message'] = "Invalid token!";
-    }
-} else {
-    $response['message'] = "Unsupported request method.";
+// Check the connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 
-echo json_encode($response);
-?>
+// SQL query to get all users
+$query = "SELECT *  FROM user";
+
+$result = $conn->query($query);
+
+// Check if the query was successful
+if ($result && $result->num_rows > 0) {
+    // Fetch the result
+    $users = array();
+    while($row = $result->fetch_assoc()) {
+        $users[] = $row;
+    }
+
+    // Return the result as a JSON object
+    header('Content-Type: application/json');
+    $data = array('users'=> $users);
+    echo json_encode($data);
+} else {
+    // Return an error response if the query failed
+    header('Content-Type: application/json');
+    echo json_encode(['error' => 'Failed to retrieve users']);
+}
+
+// Close the connection
+$conn->close();
+
