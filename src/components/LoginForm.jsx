@@ -4,6 +4,11 @@ import "../styles/LoginForm.css";
 import axios from "./axios";
 import { AppContext } from "./AppContext";
 import Notification from "./../components/Notification";
+import TextField from "@mui/material/TextField";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 function LoginForm() {
   const [formData, setFormData] = useState({
@@ -15,6 +20,12 @@ function LoginForm() {
   const [showNotification, setShowNotification] = useState(false);
   const [notificationText, setNotificationText] = useState("");
   const navigate = useNavigate();
+
+const [passwordVisible, setPasswordVisible] = useState(false);
+
+const handleClickShowPassword = () => {
+  setPasswordVisible(!passwordVisible);
+};
 
   // Navigate to Home after user is logged in
   useEffect(() => {
@@ -99,14 +110,27 @@ function LoginForm() {
           </div>
           <div>
             <label htmlFor="login_password">Password</label>
-            <input
+            <TextField
               id="login_password"
               onChange={handleChange}
               value={formData.login_password}
-              type="password"
+              type={passwordVisible ? "text" : "password"}
+              onClick={handleClickShowPassword} 
               placeholder="password"
               name="login_password"
               required
+              InputProps={{
+                endAdornment:(
+                  <InputAdornment position="end">
+                    <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                     >
+                      {passwordVisible ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                )
+              }}  
             />
           </div>
           <div>

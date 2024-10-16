@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import {
   BsCart3, BsGrid1X2Fill, BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill
 } from 'react-icons/bs';
-import icon from '../../assets/icon.png';
 import './sidebar.css';
 import { NavLink, Link } from 'react-router-dom';
 import { MdClose } from 'react-icons/md';
@@ -11,7 +10,7 @@ import { FiMenu } from 'react-icons/fi';
 
 
 const Sidebar = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);     
 
   const ref = useRef();
   useEffect(() => {
@@ -25,9 +24,11 @@ const Sidebar = () => {
       }
     };
     document.addEventListener('mousedown', handler);
+    document.addEventListener('touchstart', handler);
     return () => {
       // Cleanup the event listener
       document.removeEventListener('mousedown', handler);
+      document.addEventListener('touchstart', handler);
     };
   }, [sidebarOpen]);
 
@@ -63,22 +64,22 @@ const Sidebar = () => {
             {Link.text}
           </NavLink>
 
-          <NavLink to="/admin/dashboard">
+          <NavLink to="/admin">
             <BsGrid1X2Fill className='icon' /> Dashboard
           </NavLink>
         </li>
         <li className='sidebar-list-item'>
-          <NavLink to="/orders">
+          <NavLink to="orders">
             <BsFillArchiveFill className='icon' /> Orders
           </NavLink>
         </li>
         <li className='sidebar-list-item'>
-          <NavLink to="/products">
+          <NavLink to="products">
             <BsFillGrid3X3GapFill className='icon' /> Manage Products
           </NavLink>
         </li>
         <li className='sidebar-list-item'>
-          <NavLink to="/users">
+          <NavLink to="users">
             <BsPeopleFill className='icon' /> Customers
           </NavLink>
         </li>

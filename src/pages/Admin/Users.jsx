@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from '../../components/axios';
 import Sidebar from './Sidebar';
+import './Users.css';
 
 
 function Users() {
@@ -36,7 +37,7 @@ function Users() {
 
   return (
     
-    <div>
+    <div  className="main">
       <Sidebar/>
       <h2>Users List</h2>
       <table>

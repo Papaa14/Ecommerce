@@ -13,12 +13,12 @@ import Cart from './pages/Cart';
 import Footer from './components/Footer';
 import ProductPage from './pages/ProductPage';
 import Checkout from './pages/Checkout';
-import Admin from  './pages/Admin/App';
+import Admin from './pages/Admin/App';
 import Users from './pages/Admin/Users';
-
-
-//import Orders from './pages/Admin/Orders';
-//import Products from './pages/Admin/Products';
+import ParentLayout from './pages/Admin/Outlets';
+import Orders from './pages/Admin/Orders';
+import Products from './pages/Admin/Products';
+import Rproducts from './pages/Admin/Rproducts';
 
 
 
@@ -43,12 +43,20 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/product/:productId" element={<ProductPage />} />
-        <Route path="/admin" element={<Admin />}/>
-        <Route path="/users" element={<Users />}/>
+        <Route path="/Rproducts" element={<Rproducts />} />
+        {/* Admin Parent Route with Child Routes */}
+        <Route path="/admin" element={<ParentLayout />}>
+          <Route index element={<Admin />} />
+          <Route path="users" element={<Users />} />
+          <Route path="orders" element={<Orders />} />
+          <Route path="products" element={<Products />} />
+       
+          {/* Add other admin child routes here */}
+        </Route>
 
-        </Routes>
-         
-    
+      </Routes>
+
+
       {location.pathname !== '/admin' && <Footer />}
     </AppProvider>
   );

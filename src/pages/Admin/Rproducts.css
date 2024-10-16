@@ -1,0 +1,42 @@
+table {
+    border-collapse: collapse;
+    width: 80%; /* Adjusts for a sidebar but still takes up most of the width */
+    max-width: 100%; /* Prevents the table from exceeding the container */
+    background-color: #ddd;
+    margin-top: 120px;
+    margin-left: 100px;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f0f0f0;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #ddd;
+  }
+  
+  /* Media query for smaller screens */
+  @media screen and (max-width: 768px) {
+    table {
+      width: 100%; /* Adjusts to full width on smaller screens */
+      margin-left: 0; /* Removes margin to avoid cutoff */
+    }
+    
+    th, td {
+      padding: 6px; /* Reduce padding for smaller screens */
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    th, td {
+      font-size: 12px; /* Reduce font size on very small screens */
+      padding: 4px; /* Further reduce padding */
+    }
+  }
+  
