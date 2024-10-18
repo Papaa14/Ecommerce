@@ -5,48 +5,9 @@
     initial-value: 100vw;
   }
   
-  @property --_h {
+@property --_h {
     syntax: '<length>';
     inherits: true;
     initial-value: 100vh;
   }
-  
-  /* Global default values in :root */
-  :root {
-    --_w: 100vw; /* Full viewport width */
-    --_h: 100vh; /* Full viewport height */
-  }
-  
-
-  
-  /* Mobile-first approach (default behavior) */
-  
-  /* Small devices (up to 600px) */
-  @media (max-width: 600px) {
-    :root {
-      --_w: 100vw;
-      --_h: 50vh; /* Reduce height for mobile screens */
-    }
-    
-   
-  }
-  
-  /* Medium devices (tablets, 600px to 900px) */
-  @media (min-width: 600px) and (max-width: 900px) {
-    :root {
-      --_w: 100vw;
-      --_h: 70vh; /* Slightly larger height for tablets */
-    }
-    
-  
-  }
-  
-  /* Large devices (laptops and desktops, 900px and up) */
-  @media (min-width: 900px) {
-    :root {
-      --_w: 80vw;
-      --_h: 80vh; /* Larger dimensions for desktops */
-    }
-  
-  }
-  
+ 

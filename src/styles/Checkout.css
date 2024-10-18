@@ -10,7 +10,7 @@
     inherits: true;
     initial-value: 100vw; 
   }
-  @property --_h {
+@property --_h {
     syntax: '<length>';
     inherits: true;
     initial-value: 100vh; 

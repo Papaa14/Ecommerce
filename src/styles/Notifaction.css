@@ -45,12 +45,12 @@
   .notification-content p {
     font-size: 24px;
   }
-  @property --_w {
+@property --_w {
     syntax: '<length>';
     inherits: true;
     initial-value: 100vw; 
   }
-  @property --_h {
+@property --_h {
     syntax: '<length>';
     inherits: true;
     initial-value: 100vh; 

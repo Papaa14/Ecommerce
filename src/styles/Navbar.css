@@ -75,20 +75,20 @@ header .navigation-right-side nav ul a:hover:after{
     initial-value: 100vw; 
   }
   
-  @property --_h {
+@property --_h {
     syntax: '<length>';
     inherits: true;
     initial-value: 100vh; 
   }
   
-  /* Global default values in :root */
-  :root {
+/* Global default values in :root */
+:root {
     --_w: 100vw;
     --_h: 100vh;
   }  
  
   /* Media query for smaller screens */
-  @media (max-width: 768px) {
+@media (max-width: 768px) {
     :root {
       --_w: 100vw;
       --_h: 50vh;
@@ -96,7 +96,7 @@ header .navigation-right-side nav ul a:hover:after{
   }
   
   /* Media query for larger screens */
-  @media (min-width: 1200px) {
+@media (min-width: 1200px) {
     :root {
       --_w: 80vw;
       --_h: 80vh;
