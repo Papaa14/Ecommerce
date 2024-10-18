@@ -95,3 +95,13 @@
     font-size: 14px;
     font-weight: 500;
   }
+  @property --_w {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 100vw; 
+  }
+  @property --_h {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 100vh; 
+  }

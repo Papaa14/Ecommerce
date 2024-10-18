@@ -68,3 +68,38 @@ header .navigation-right-side nav ul a:hover:after{
 .navlinkName{
     font-size: 14px;
 }
+/* Define the custom properties using @property */
+@property --_w {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 100vw; 
+  }
+  
+  @property --_h {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 100vh; 
+  }
+  
+  /* Global default values in :root */
+  :root {
+    --_w: 100vw;
+    --_h: 100vh;
+  }  
+ 
+  /* Media query for smaller screens */
+  @media (max-width: 768px) {
+    :root {
+      --_w: 100vw;
+      --_h: 50vh;
+    }
+  }
+  
+  /* Media query for larger screens */
+  @media (min-width: 1200px) {
+    :root {
+      --_w: 80vw;
+      --_h: 80vh;
+    }
+  }
+  

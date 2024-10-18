@@ -5,3 +5,13 @@
 .checkoutContainer{
     margin-top: 50px;
 }
+@property --_w {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 100vw; 
+  }
+  @property --_h {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 100vh; 
+  }

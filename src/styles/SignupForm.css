@@ -84,3 +84,13 @@
     background-color: #fdf2e9;
     color: #f48982;
   }
+  @property --_w {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 100vw; 
+  }
+  @property --_h {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 100vh; 
+  }

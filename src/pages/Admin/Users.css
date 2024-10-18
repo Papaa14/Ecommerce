@@ -33,9 +33,13 @@ tr:nth-child(even) {
   }
 }
 
-@media screen and (max-width: 480px) {
-  th, td {
-    font-size: 12px; /* Reduce font size on very small screens */
-    padding: 4px; /* Further reduce padding */
-  }
+@property --_w {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 100vw; 
+}
+@property --_h {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 100vh; 
 }

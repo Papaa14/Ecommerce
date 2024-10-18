@@ -46,18 +46,13 @@ button {
 }
 
 
-
-
-/* Responsive Styles */
-
-@media (max-width: 768px) {
-  #sidebar {
-    width: 200px;
-  }
+@property --_w {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 100vw; 
 }
-
-@media (max-width: 480px) {
-  #sidebar {
-    width: 150px;
-  }
+@property --_h {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 100vh; 
 }

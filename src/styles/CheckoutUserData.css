@@ -44,4 +44,14 @@
   br {
     margin-bottom: 10px;
   }
-  
+
+  @property --_w {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 100vw; 
+  }
+  @property --_h {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 100vh; 
+  }

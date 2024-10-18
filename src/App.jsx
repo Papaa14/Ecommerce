@@ -57,7 +57,7 @@ function App() {
       </Routes>
 
 
-      {location.pathname !== '/admin' && <Footer />}
+      {location.pathname !== '/admin' && location.pathname !== '/Rproducts' && <Footer />}
     </AppProvider>
   );
 }

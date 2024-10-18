@@ -149,25 +149,13 @@ body {
       display: inline;
     }
   }
-  /* Small <= 768px */
-    
-  @media screen and (max-width: 768px) {
-    .main-cards {
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-bottom: 0;
-    }
-  
-    .charts {
-      grid-template-columns: 1fr;
-      margin-top: 30px;
-    }
+  @property --_w {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 100vw; 
   }
-  
-  /* Extra Small <= 576px */
-  
-  @media screen and (max-width: 576px) {
-    .hedaer-left {
-      display: none;
-    }
+  @property --_h {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 100vh; 
   }

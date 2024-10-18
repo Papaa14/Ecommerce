@@ -76,3 +76,14 @@ div.hero-banner.full-block{
 .hero-banner-left-side_content-btns a:last-child:active {
     transform: scale(0.97);
   }
+  
+  @property --_w {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 100vw; 
+  }
+  @property --_h {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 100vh; 
+  }
