@@ -36,10 +36,12 @@ if (!empty($filters)) {
 if (!empty($filters)) {
     if (in_array("category = '" . $conn->real_escape_string($category) . "'", $filters)) {
         $sql .= " ORDER BY category DESC";
+    } elseif (in_array("gender = '" . $conn->real_escape_string($gender) . "'", $filters)) {
+        $sql .= " ORDER BY gender DESC";
     } elseif (in_array("price <= " . floatval($price), $filters)) {
         $sql .= " ORDER BY price DESC";
     } else {
-        $sql .= " ORDER BY category DESC";
+        $sql .= " ORDER BY category DESC"; // Default sorting
     }
 } else {
     $sql .= " ORDER BY category DESC"; // Default sorting
