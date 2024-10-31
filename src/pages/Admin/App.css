@@ -1,7 +1,6 @@
 body {
     margin: 0;
-    padding: 0;
-    background-image: url('/src/assets/bg2.jpg'); 
+    padding: 0;   
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

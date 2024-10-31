@@ -5,53 +5,44 @@ require_once 'cors.php';
 $sql = "SELECT * FROM product WHERE 1=1";
 
 $filters = [];
+$idproduct = $_GET['idproduct'] ?? '';
 $category = $_GET['category'] ?? '';
-$type = $_GET['type'] ?? '';
 $price = $_GET['price'] ?? '';
-$name = $_GET['name'] ?? '';
-$times_sold = $_GET['times_sold'] ?? '';
-$productId = $_GET['productId'] ?? '';
+$size = $_GET['size'] ?? '';
+$gender = $_GET['gender'] ?? '';
+$image = $_GET['image'] ?? '';
 
+// Add category filter
 if (!empty($category)) {
     $filters[] = "category = '" . $conn->real_escape_string($category) . "'";
 }
-if (!empty($type)) {
-    $filters[] = "type = '" . $conn->real_escape_string($type) . "'";
-}
 
+// Add price filter
 if (!empty($price)) {
     $filters[] = "price <= " . floatval($price);
 }
-if (!empty($productId)) { // Add this block to filter by productId
-    $filters[] = "idproduct = " . intval($productId);
-}
-if (!empty($name)) {
-    $filters[] = "(name LIKE '%" . $conn->real_escape_string($name) . "%' OR description LIKE '%" . $conn->real_escape_string($name) . "%')";
+
+// Add gender filter
+if (!empty($gender)) {
+    $filters[] = "gender = '" . $conn->real_escape_string($gender) . "'";
 }
 
-if (!empty($times_sold)) {
-    $filters[] = "times_sold >= " . intval($times_sold);
-}
-
+// Append filters to the SQL query if any are set
 if (!empty($filters)) {
     $sql .= " AND " . implode(" AND ", $filters);
 }
 
-$sort = $_GET['sort'] ?? '';
-
-switch ($sort) {
-    case 'times_sold':
-        $sql .= " ORDER BY times_sold DESC";
-        break;
-    case 'added_time':
-        $sql .= " ORDER BY date_added DESC";
-        break;
-    case 'sale_percentage':
-        $sql .= " AND old_price > price AND old_price IS NOT NULL ORDER BY (1 - (price / old_price)) DESC";
-        break;
-    default:
-        $sql .= " ORDER BY idproduct DESC";
-        break;
+// Sorting logic based on the filters
+if (!empty($filters)) {
+    if (in_array("category = '" . $conn->real_escape_string($category) . "'", $filters)) {
+        $sql .= " ORDER BY category DESC";
+    } elseif (in_array("price <= " . floatval($price), $filters)) {
+        $sql .= " ORDER BY price DESC";
+    } else {
+        $sql .= " ORDER BY category DESC";
+    }
+} else {
+    $sql .= " ORDER BY category DESC"; // Default sorting
 }
 
 $limit = isset($_GET['limit']) ? intval($_GET['limit']) : null;

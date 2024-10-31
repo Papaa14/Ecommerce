@@ -5,12 +5,12 @@ import { AppContext } from "./AppContext";
 
 function ProductCard({
   productId,
-  productName,
-  outofstock,
   productType,
-  price,
-  sale,
-  oldPrice,
+  outofstock,
+  size,  
+  price,  
+  gender,
+  image,
   cart,
 }) {
   const { cartItems, setCartItems } = useContext(AppContext);
@@ -49,11 +49,12 @@ function ProductCard({
         ...prevCartItems,
         {
           productId,
-          productName,
+          productType,         
           outofstock,
-          productType,
+          size,
           price,
-          oldPrice,
+          gender,
+          image,
           quantity: 1,
         },
       ]);
@@ -84,11 +85,9 @@ function ProductCard({
 
   return (
         <div className="product-item" onClick={handleProductClicked}>
-          <div className="product-item_img">
-            {outofstock && <div className="out-of-stock">Out Of Stock</div>}
-            {oldPrice > 0 && <div className="sale">SALE!</div>}
+          <div className="product-item_img">           
             <p>
-              <img src={`src/assets/product${productId}.jpg`} alt="" />
+            <img src={`APIs/uploads/${image}`} alt={productType} />
             </p>
             <div className="add-item-somewhere">
               {!cart ? (
@@ -119,14 +118,9 @@ function ProductCard({
             </div>
             <div>
               <p className="product-item-little-desc_product-name">
-                {productName}
+                {size}
               </p>
-            </div>
-            {oldPrice > 0 && (
-              <del className="product-item-little-desc_old-product-price">
-                ${oldPrice}
-              </del>
-            )}
+            </div>           
             <span className="product-item-little-desc_product-price">${price}</span>
           </div>
         </div>

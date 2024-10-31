@@ -4,8 +4,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { AppProvider } from './components/AppContext';
 import Home from './pages/Home';
-import Clothes from './pages/Clothes';
-import Accessories from './pages/Accessories';
+import Shoes from './pages/shoes';
 import ContactUs from './pages/ContactUs';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -35,8 +34,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route path="/clothes" element={<Clothes />} />
-        <Route path="/accessories" element={<Accessories />} />
+        <Route path="/shoes" element={<Shoes />} />      
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />

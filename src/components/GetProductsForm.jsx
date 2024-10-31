@@ -24,8 +24,8 @@ function GetProductsForm({handleChange, handleSubmit, search, category, price, r
               <input
                 type="radio"
                 name="category"
-                value="men"
-                checked={category === "men"}
+                value="heels"
+                checked={category === "heels"}
                 onChange={handleChange}
               />{" "}
               Men
@@ -40,16 +40,7 @@ function GetProductsForm({handleChange, handleSubmit, search, category, price, r
               />{" "}
               Women
             </label>
-            <label>
-              <input
-                type="radio"
-                name="category"
-                value="kids"
-                checked={category === "kids"}
-                onChange={handleChange}
-              />{" "}
-              Kids
-            </label>
+            
           </div>
           <div className="clothes-accessories-group">
             <label htmlFor="price">Sort by price</label>
@@ -57,9 +48,9 @@ function GetProductsForm({handleChange, handleSubmit, search, category, price, r
               type="range"
               id="price"
               name="price"
-              min="10"
-              max="1000"
-              step="10"
+              min="1000"
+              max="5000"
+              step="100"
               value={price}
               onChange={handleChange}
             />

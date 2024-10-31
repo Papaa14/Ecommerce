@@ -3,11 +3,12 @@ import GetProductsForm from "./GetProductsForm";
 import axios from "./axios";
 import ProductCard from "./ProductCard";
 
-function ClothesAccessoriesPage({type}) {
+function Shoepage({type}) {
   const [formValues, setFormValues] = useState({
     search: "",
     category: "",
     price: 1000,
+    gender:"",
   });
   const [products, setProducts] = useState([]);
 
@@ -17,6 +18,14 @@ function ClothesAccessoriesPage({type}) {
       ...prevValues,
       [name]: value,
     }));
+
+    // If the category input changes, fetch the filtered products
+    if (name === "category") {
+      fetchData({
+        ...formValues,
+        [name]: value, // Update the category in the formValues
+      });
+    }
   };
 
   const resetOnClick = () =>{
@@ -24,38 +33,33 @@ function ClothesAccessoriesPage({type}) {
       search: "",
       category: "",
       price: 1000,
+      gender:"",
     })
-    fetchData();
+    fetchData({
+      search: "",
+      category: "",
+      price: 1000,
+      gender:"",
+    });
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    await fetchData(formValues);
+  }
 
+   
+  useEffect(() => {
+    fetchData();
+  }, []);
+ const fetchData = async (filters = {}) => {
     try {
       const response = await axios.get("/api.php", {
         params: {
           type: type,
-          category: formValues.category,
-          price: formValues.price,
-          name: formValues.search,
-        },
-      });
-      setProducts(response.data);
-    } catch (error) {
-      console.error(error);
-      setProducts([]);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get("/api.php", {
-        params: {
-          type: type
+          category: filters.category || formValues.category, // Use the category from filters or current formValues
+          price: filters.price || formValues.price,
+          name: filters.search || formValues.search,
         },
       });
       setProducts(response.data);
@@ -67,12 +71,13 @@ function ClothesAccessoriesPage({type}) {
   let productsToRender = products.map(product => {
     return (<ProductCard
               key={product.idproduct}
-              productName={product.name}
-              outofstock={false}
               productId={product.idproduct}
-              productType={product.category}
+              productType={product.category}            
+              outofstock={false}
+              size={product.size}
               price={product.price}
-              oldPrice={product.old_price}
+              gender={product.gender}
+              image={product.image}
             />)
   })
   return (
@@ -87,7 +92,7 @@ function ClothesAccessoriesPage({type}) {
       />
         <section className="products-section products-accessories full-block" id="on-sale">
           <div className="container">
-            <h2  className="pageTitle">{type === "clothes" ? "Clothes" : "Accessories"}</h2>
+            <h2  className="pageTitle">Discover Store</h2>
             <div className="grid-container a" id="clothes_grid">
               {productsToRender}
             </div>
@@ -97,4 +102,4 @@ function ClothesAccessoriesPage({type}) {
   );
 }
 
-export default ClothesAccessoriesPage;
+export default Shoepage;
